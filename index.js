@@ -1,5 +1,11 @@
-const del = require('del');
+const fs = require('fs');
 
-del(['img/*.png']).then(function (paths){ //! znaczy nie usuwaj
-    console.log('Deleted files and folders:\n', paths.join('\n'));
+
+fs.readdir("./img/", function (err, files) {
+  files.forEach(function (file) {
+      fs.unlink(file, function (err){
+        if(err) console.log(err);
+        console.log("File deleted"+files);
+      });
+  });
 });
